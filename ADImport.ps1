@@ -10,18 +10,19 @@ try
         Name                  = "$($User.'Firstname') $($User.'Lastname') $($User.'Suffix')"
         GivenName             = $User.'Firstname'
         Surname               = $User.'Lastname'
-        DisplayName           = $User.'Firstname' + " " + $User.'Lastname'
+        DisplayName           = $User.'Firstname' + " " + $User.'Lastname' + " " + $User.'Suffix'
         UserPrincipalName     = $User.'Firstname' + "." + $User.'Lastname' + "@bush.edu"   
-        SamAccountName       = $User.'Firstname' + "." + $User.'Lastname' 
+        SamAccountName        = $User.'Firstname' + "." + $User.'Lastname' 
         Path                  = "OU=" + $User.'OU' + ",OU=Students,OU=ManUsers,DC=bush,DC=edu"
         Description           = $User.'OU'
         Department            = $User.'OU'
         Company               = $User.'OU'
-        Country               = "US"
         EmailAddress          = $User.'Firstname' + "." + $User.'Lastname' + "@bush.edu"   
         AccountPassword       = (ConvertTo-SecureString $User.'Password'  -AsPlainText -Force)
         Enabled               = $true
-        ChangePasswordAtLogon = $false # Set the "User must change password at next logon"
+        ChangePasswordAtLogon = $false
+        PasswordNeverExpires  = $true
+        Title                 = "Student"
     }
     Write-Output $NewUserParams
 
@@ -35,6 +36,8 @@ try
         # User does not exist then proceed to create the new user account
         # Account will be created in the OU provided by the $User.OU variable read from the CSV file
         New-ADUser @NewUserParams
+        Set-ADUser -Identity $($User.'Firstname' + "." + $User.'Lastname') -Replace @{c="US";co="United States";countrycode=840}
+        Set-ADUser -Identity $($User.'Firstname' + "." + $User.'Lastname') -add @{ProxyAddresses="SMTP:" + $User.'Firstname' + "." + $User.'Lastname' + "@bush.edu"}
         Write-Host "The user $($User.'Firstname' + "." + $User.'Lastname' + "@bush.edu") is created successfully." -ForegroundColor Green
     }
     }
