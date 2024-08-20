@@ -7,10 +7,10 @@ try
 
  # Define the parameters using a hashtable
     $NewUserParams = @{
-        Name                  = "$($User.'Firstname') $($User.'Lastname')"
+        Name                  = "$($User.'Firstname') $($User.'Lastname') $($User.'Suffix')"
         GivenName             = $User.'Firstname'
         Surname               = $User.'Lastname'
-        DisplayName           = $User.'Firstname' + " " + $User.'Lastname' + " " + $User.'Suffix'
+        DisplayName           = $User.'Firstname' + " " + $User.'Lastname'
         UserPrincipalName     = $User.'Firstname' + "." + $User.'Lastname' + "@bush.edu"   
         SamAccountName       = $User.'Firstname' + "." + $User.'Lastname' 
         Path                  = "OU=" + $User.'OU' + ",OU=Students,OU=ManUsers,DC=bush,DC=edu"
