@@ -1,5 +1,6 @@
 Import-Module ActiveDirectory
 
+# Import the CSV file containing the user information. Set the path to the location of the CSV file
 $Users = Import-Csv -Path "C:\Users\Install\Documents\ADImportTest.csv"            
 foreach ($User in $Users) {  
 try         
