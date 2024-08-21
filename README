@@ -1,0 +1,43 @@
+# Installing Active Directory Module for PowerShell
+
+To use the Active Directory module in PowerShell, you need to install it first. Follow the steps below to install the module:
+
+1. Open PowerShell as an administrator.
+2. Run the following command to install the module:
+
+```powershell
+Install-WindowsFeature RSAT-AD-PowerShell
+```
+
+3. Wait for the installation to complete.
+
+# Running the Script
+
+To use the Active Directory module in PowerShell, you need to open the module before running the script. Follow the steps below:
+
+1. Open PowerShell as an administrator.
+2. Run the following command to open the Active Directory module:
+
+```powershell
+Import-Module ActiveDirectory
+```
+
+3. Once the module is imported, you can proceed to run the script.
+
+# Running the Script
+
+1. Open PowerShell as an administrator.
+2. Navigate to the directory where the .ps1 file is located using the `cd` command.
+3. Run the script by typing `.\ADImportTemplate.ps1` and pressing Enter.
+
+# Piping Output to a Log File
+
+To pipe the output of a PowerShell script to a file, use the `>` operator followed by the file path. Here's an example:
+
+```powershell
+.\ADimport.ps1 > output.txt
+```
+
+This will execute the `ADimport.ps1` file and redirect the output to the `output.txt` file.
+
+Note: The ADimport.ps1 script may produce error messages based on the logic implemented within it. If any errors occur during the execution of the script, they will be displayed in the console output, and the script will continue to run. By redirecting the output to a file, you can capture both the regular output and any error messages in the output.txt file to determine which users were not created succesfully. One important exception is that users with names longer than 20 characters will fail to be created due to the character limit for SAM Account Names. Handle this on a case by case basis,as a script to automatically shorten names will surely upset someone.
