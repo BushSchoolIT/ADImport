@@ -13,7 +13,7 @@ Install-WindowsFeature RSAT-AD-PowerShell
 
 # Running the Script
 
-To use the Active Directory module in PowerShell, you need to open the module before running the script. Follow the steps below:
+To test the Active Directory module in PowerShell, you can open the module before running the script. Follow the steps below:
 
 1. Open PowerShell as an administrator.
 2. Run the following command to open the Active Directory module:
@@ -22,7 +22,7 @@ To use the Active Directory module in PowerShell, you need to open the module be
 Import-Module ActiveDirectory
 ```
 
-3. Once the module is imported, you can proceed to run the script.
+3. Once you've verified that you can connect to Active Directory, you can proceed to run the script.
 
 # Running the Script
 
